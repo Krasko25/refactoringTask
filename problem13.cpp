@@ -1,5 +1,3 @@
-//Use the Name field 
-string[] nameParts = customer.Name.Split(' '); 
-
-string firstName = nameParts[0]; 
-string lastName = customer.Name.Replace(nameParts[0], "").TrimStart(' '); 
+string[] nameParts = customer.Name.Split(' ', 2); 
+string firstName = nameParts[0];
+string lastName = nameParts.Length > 1 ? nameParts[1] : string.Empty;
