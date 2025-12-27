@@ -1,115 +1,30 @@
-public bool CheckPath(string path) 
+public bool CheckPath(string basePath)
 {
-    int n;
-    n = 0;
-    
-    // Проверяем наличие нужных папок;
-    if (Directory.Exists(path + "SCLAD")) 
-    { 
-        n += 1; 
+    // Проверяем обязательные папки
+    string[] requiredDirectories = { "SCLAD", "REAL", "DOSTAVKA" };
+    foreach (var dir in requiredDirectories)
+    {
+        if (!Directory.Exists(Path.Combine(basePath, dir)))
+            return false;
     }
-    
-    if (Directory.Exists(path + "REAL")) 
-    { 
-        n += 1; 
-    }
-    
-    if (Directory.Exists(path + "DOSTAVKA")) 
-    { 
-        n += 1; 
-    }
-    
-    // Проверяем наличие нужных файлов
-    if (File.Exists(path + "analit.dbf")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "partner.dbf")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "SCLAD\\mdoc.dbf")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "SCLAD\\mdoc.fpt")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "SCLAD\\mdocm.dbf")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "SCLAD\\mgrup.dbf")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "SCLAD\\mlabel.dbf")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "SCLAD\\mlabel.fpt")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "REAL\\rbookm.dbf")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "REAL\\rbook.dbf")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "REAL\\rbook.fpt")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "DOSTAVKA\\avt.dbf")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "DOSTAVKA\\avtm.dbf")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "DOSTAVKA\\avtm.fpt")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "DOSTAVKA\\cargo.dbf")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "DOSTAVKA\\cargom.dbf")) 
-    { 
-        n += 1; 
-    }
-    
-    if (File.Exists(path + "DOSTAVKA\\zamena.dbf")) 
-    { 
-        n += 1; 
-    }
-    
-    // Если указанная папка содержит все, что нужно
-    if (n == 20) 
-    { 
-        return true; 
-    }
-    
-    return false;
-}
+
+    // Проверяем обязательные файлы
+    string[] requiredFiles = {
+        "analit.dbf",
+        "partner.dbf",
+        Path.Combine("SCLAD", "mdoc.dbf"),
+        Path.Combine("SCLAD", "mdoc.fpt"),
+        Path.Combine("SCLAD", "mdocm.dbf"),
+        Path.Combine("SCLAD", "mgrup.dbf"),
+        Path.Combine("SCLAD", "mlabel.dbf"),
+        Path.Combine("SCLAD", "mlabel.fpt"),
+        Path.Combine("REAL", "rbookm.dbf"),
+        Path.Combine("REAL", "rbook.dbf"),
+        Path.Combine("REAL", "rbook.fpt"),
+        Path.Combine("DOSTAVKA", "avt.dbf"),
+        Path.Combine("DOSTAVKA", "avtm.dbf"),
+        Path.Combine("DOSTAVKA", "avtm.fpt"),
+        Path.Combine("DOSTAVKA", "cargo.dbf"),
+        Path.Combine("DOSTAVKA", "cargom.dbf"),
+        Path.Combine("DOSTAVKA", "zamena.dbf")
+    };
