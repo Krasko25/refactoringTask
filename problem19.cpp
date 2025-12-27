@@ -1,1 +1,11 @@
-string mailTo = ((Config.GetSetting("AdminNotifications_EmailAddress") == null) || (Config.GetSetting("AdminNotifications_EmailAddress").Length <= 0))? Globals.GetHostPortalSettings().HostSettings["SMTPPassword"].ToString(): Config.GetSetting("AdminNotifications_EmailAddress");
+string mailTo;
+string adminEmail = Config.GetSetting("AdminNotifications_EmailAddress");
+if (string.IsNullOrEmpty(adminEmail))
+{
+    // Скорее всего, тут должна быть настройка SMTPEmail, а не Password
+    mailTo = Globals.GetHostPortalSettings().HostSettings["SMTPEmail"]?.ToString();
+}
+else
+{
+    mailTo = adminEmail;
+}
