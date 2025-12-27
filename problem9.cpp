@@ -1,1 +1,5 @@
-return ((int)(Counter / 2) != Counter / 2.00 && Counter != 0);
+if (Connected == 0)
+{
+    rez = setup();
+}
+fl_end = true;
